@@ -25,7 +25,7 @@ $connect = mysqli_connect("localhost", "root", "", "shopping");
             $result = mysqli_query($connect, $query);
             if(mysqli_num_rows($result)>0)
             {
-                while(mysqli_fetch_array($result))
+                while($row = mysqli_fetch_array($result))
                 {
             ?>
             <div class="col-md-4">
