@@ -84,7 +84,7 @@ if(isset($_GET["action"]))
                         <input type = "hidden" name = "hidden_name" value = "<?php echo $row["name"]; ?>" />
                         <input type = "hidden" name = "hidden_price" value = "<?php echo $row["price"]; ?>" />
                         <input type = "submit" name = "add_to_cart" style = "margin-top:5px;" class = "btn btn-success" value = "Add to Cart" />
-                    </div>
+                    </div><br />
                 </form>
             </div>
         <?php
