@@ -20,7 +20,8 @@ if (isset($_POST["add_to_cart"]))
 
         }else
             {
-
+                echo '<script>alert("Item is already added")</script>';
+                echo '<script>window.location = "index.php"</script>';
             }
 
     }else
