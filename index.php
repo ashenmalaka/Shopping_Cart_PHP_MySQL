@@ -2,6 +2,41 @@
 session_start();
 $connect = mysqli_connect("localhost", "root", "", "shopping");
 
+if (isset($_POST["add_to_cart"]))
+{
+    if(isset($_SESSION["shopping_cart"]))
+    {
+        $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+        if(!in_array($_GET["id"], $item_array_id))
+        {
+            $count = count($_SESSION["shopping_cart"]);
+            $item_array = array(
+                'item_id'			=>	$_GET["id"],
+                'item_name'			=>	$_POST["hidden_name"],
+                'item_price'		=>	$_POST["hidden_price"],
+                'item_quantity'		=>	$_POST["quantity"]
+            );
+            $_SESSION["shopping_cart"][$count] = $item_array;
+
+        }else
+            {
+
+            }
+
+    }else
+        {
+            $item_array = array(
+                'item_id'			=>	$_GET["id"],
+                'item_name'			=>	$_POST["hidden_name"],
+                'item_price'		=>	$_POST["hidden_price"],
+                'item_quantity'		=>	$_POST["quantity"]
+            );
+            $_SESSION["shopping_cart"][0] = $item_array;
+
+        }
+
+}
+
 
 
 ?>
@@ -20,6 +55,7 @@ $connect = mysqli_connect("localhost", "root", "", "shopping");
     <br />
     <div class="container" style="width: 700px;">
         <h3 align="center">Shopping Cart</h3><br />
+
         <?php
             $query = "SELECT * FROM products ORDER BY id ASC";
             $result = mysqli_query($connect, $query);
@@ -50,7 +86,4 @@ $connect = mysqli_connect("localhost", "root", "", "shopping");
     <br />
 
 </body>
-
-
-
 </html>
